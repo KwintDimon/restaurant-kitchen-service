@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}
+  <title>{{ dish.name }}</title>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ dish.name }}</h1>
+  <div class="row m-2">
+    <div class="col">
+      <p><strong>Dish type:</strong> {{ dish.dish_type.name }}</p>
+      <p>
+        <strong>Description: </strong>
+        {{ dish.description }}
+      </p>
+      <p><strong>Price:</strong> {{ dish.price }}</p>
+    </div>
+  </div>
+  <div class="row m-2">
+    <div class="col">
+      <a href="{% url 'kitchen:dish-update' pk=dish.id %}"
+        class="btn btn-outline-info">
+        Update
+      </a>
+      <a href="{% url 'kitchen:dish-delete' pk=dish.id %}"
+        class="btn btn-outline-danger">
+        Delete
+      </a>
+    </div>
+  </div>
+
+  <ul>
+  {% if dish in user.dishes.all %}
+    <h2>I`m responsible for this dish</h2>
+    {% if dish.cooks.count > 1 %}
+      <h2>Other responsible cooks:</h2>
+    {% endif %}
+  {% else %}
+      <h2>Responsible cooks:</h2>
+  {% endif %}
+  
+  {% for cook in dish.cooks.all %}
+    {% if cook.username != user.username %}
+      <li>{{ cook.username }} {{ dish.email }}</li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Delete dish type</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Delete dish type?</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+  <input class="btn btn-danger mt-2" type="submit" value="YES">
+  <a href="{% url 'kitchen:dish-type-list' %}" class="btn btn-secondary mt-2">NO</a>
+  </form>
+{% endblock %}

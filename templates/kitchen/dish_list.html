@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}
+  <title>Dish list</title>
+{% endblock %}
+
+{% block content %}
+  <h1>All available dishes
+    <a href="{% url 'kitchen:dish-create' %}" 
+       class="link-primary link-underline-opacity-0">
+      +     
+    </a>
+  </h1>
+  {% if dish_list %}
+  <ul>
+  {% for dish in dish_list %}
+    <li>{{ dish.dish_type.name }}
+      <a href="{% url 'kitchen:dish-detail' pk=dish.id %}"
+       class="link-primary link-underline-opacity-0">
+        {{ dish.name }}</a>
+      (id:{{ dish.id }})
+      <strong>{{ dish.price }}UAH</strong></li>
+  {% endfor %}
+  </ul>
+  {% else %}
+    <h3>There are no dishes yet.</h3>
+  {% endif %}
+{% endblock %}
