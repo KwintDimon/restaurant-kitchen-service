@@ -5,7 +5,12 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Cook list</h1>
+  <h1>Cook list
+    <a href="{% url 'kitchen:cook-create' %}" 
+       class="link-primary link-underline-opacity-0">
+      +     
+    </a>
+  </h1>
   
   {%  if cook_list %}
     <table class="table">
@@ -20,7 +25,9 @@
         <tr>
           <td>{{ cook.id }}</td>
           <td>
-            {{ cook.username }} {% if user == cook %} (Me){%  endif %}
+            <a href="{{ cook.get_absolute_url }}">
+              {{ cook.username }} {% if user == cook %} (Me){%  endif %}
+            </a>
           </td>
           <td>{{ cook.first_name }}</td>
           <td>{{ cook.last_name }}</td>

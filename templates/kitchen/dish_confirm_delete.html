@@ -8,6 +8,8 @@
   <h1>Delete dish?</h1>
   <form action="" method="post">
     {% csrf_token %}
-  <input type="submit" value="YES">
+    <input type="submit" value="YES"
+           class="btn btn-outline-danger mt-2"
+    >
   </form>
 {% endblock %}

@@ -19,7 +19,7 @@
   <div class="row m-2">
     <div class="col">
       <a href="{% url 'kitchen:dish-update' pk=dish.id %}"
-        class="btn btn-outline-info">
+        class="btn btn-outline-info m-2">
         Update
       </a>
       <a href="{% url 'kitchen:dish-delete' pk=dish.id %}"
@@ -29,20 +29,22 @@
     </div>
   </div>
 
-  <ul>
-  {% if dish in user.dishes.all %}
-    <h2>I`m responsible for this dish</h2>
-    {% if dish.cooks.count > 1 %}
-      <h2>Other responsible cooks:</h2>
-    {% endif %}
-  {% else %}
-      <h2>Responsible cooks:</h2>
-  {% endif %}
-  
-  {% for cook in dish.cooks.all %}
-    {% if cook.username != user.username %}
-      <li>{{ cook.username }} {{ dish.email }}</li>
-    {% endif %}
-  {% endfor %}
-  </ul>
+<div class="row">
+  <div class="col m-2">
+    <ul class="list-group w-50">
+      {% if dish in user.dishes.all %}
+        <h3>I`m responsible for this dish</h3>
+      {% endif %}
+      <h3>All responsible cooks:</h3>  
+      
+      {% for cook in dish.cooks.all %}
+        <li class="list-group-item"><a href="{{ cook.get_absolute_url }}">
+              {{ cook.username }} {% if user == cook %}(Me){%  endif %}
+              {{ cook.email }}
+        </a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
 {% endblock %}
+  

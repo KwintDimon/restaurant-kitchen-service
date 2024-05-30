@@ -24,7 +24,9 @@
        {% if user.is_authenticated %}
           <li class="nav-link m-2">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
           <li class="nav-link">
-            <form action="{% url 'logout' %}?next={{ request.path }}" method="post">
+            <form action="{% url 'logout' %}?next={{ request.path }}" method="post"
+              class="logout_navbar_form"
+            >
               {% csrf_token %}
               <input class="btn btn-danger" type="submit" value="Logout">
             </form></li>

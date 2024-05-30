@@ -12,16 +12,21 @@
     </a>
   </h1>
   {% if dish_list %}
-  <ul>
-  {% for dish in dish_list %}
-    <li>{{ dish.dish_type.name }}
+    <div class="list-group mt-2 mb-2 w-50">
+    {% for dish in dish_list %}
       <a href="{% url 'kitchen:dish-detail' pk=dish.id %}"
-       class="link-primary link-underline-opacity-0">
-        {{ dish.name }}</a>
-      (id:{{ dish.id }})
-      <strong>{{ dish.price }}UAH</strong></li>
-  {% endfor %}
-  </ul>
+         class="list-group-item list-group-item-action"
+         aria-current="true"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ dish.name }}</h5>
+          <small>id: {{ dish.id }}</small>
+        </div>
+        <p class="mb-1">{{ dish.dish_type }}</p>
+        <small>{{ dish.price }}UAH</small>
+      </a>
+    {% endfor %}
+    </div>
   {% else %}
     <h3>There are no dishes yet.</h3>
   {% endif %}
