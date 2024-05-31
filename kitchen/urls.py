@@ -15,7 +15,8 @@ from kitchen.views import (
     CookDetailView,
     CookCreateView,
     CookExperienceUpdateView,
-    CookDeleteView
+    CookDeleteView,
+    toggle_assign_to_dish
 )
 
 urlpatterns = [
@@ -44,6 +45,11 @@ urlpatterns = [
         "dishes/",
         DishListView.as_view(),
         name="dish-list"
+    ),
+    path(
+        "dish/<int:pk>/toggle-assign/",
+        toggle_assign_to_dish,
+        name="toggle-dish-assign"
     ),
     path(
         "dish/<int:pk>/detail",
