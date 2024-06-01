@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+  <div class="container">
   <div class="row m-2">
     <div class="col text-center">
       <h1>User {{ cook.username }}</h1>
@@ -26,7 +27,7 @@
         Update
       </a>
       <a href="{% url 'kitchen:cook-delete' pk=cook.id %}"
-        class="btn btn-outline-danger">
+        class="btn btn-outline-danger m-2">
         Delete
       </a>
     </div>
@@ -53,5 +54,6 @@
     {% empty %}
       <p>This cook has no dishes</p>
     {% endfor %}
+  </div>
 {% endblock %}
 </div>

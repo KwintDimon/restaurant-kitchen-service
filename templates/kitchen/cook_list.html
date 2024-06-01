@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+  <div class="container">
   <h1>Cook list
     <a href="{% url 'kitchen:cook-create' %}" 
        class="link-primary link-underline-opacity-0">
@@ -38,4 +39,5 @@
   {% else %}
     <p>There are no cooks in database</p>
   {% endif %}
+  </div>
 {% endblock %}
