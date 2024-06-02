@@ -6,6 +6,21 @@
 
 {% block content %}
   <div class="container">
+  
+  <div class="row mt-2">
+    <div class="col">
+      <form method="get" action="" class="input-group" role="search">
+        {{ search_form }}
+        <button
+            class="btn btn-primary" type="submit"
+            style="border-radius: 10px;"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+  
     <h1>All available dishes
       <a href="{% url 'kitchen:dish-create' %}" 
          class="link-primary link-underline-opacity-0">
