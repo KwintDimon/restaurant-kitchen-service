@@ -83,6 +83,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
             return self.queryset.filter(name__icontains=name)
         return self.queryset
 
+
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
 
