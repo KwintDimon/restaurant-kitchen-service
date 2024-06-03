@@ -1,3 +1,5 @@
 .idea
 .venv
 restaurant_kitchen_service/__pycache__/
+.env
+kitchen/migrations/__pycache__/

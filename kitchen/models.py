@@ -21,7 +21,7 @@ class Cook(AbstractUser):
         verbose_name_plural = "cooks"
 
     def __str__(self):
-        return f"{self.username}, {self.first_name}, {self.last_name}"
+        return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
         return reverse("kitchen:cook-detail", kwargs={"pk": self.pk})
