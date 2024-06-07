@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'kitchen:index' %}">Restaurant service</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'kitchen:index' %}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Pages
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'kitchen:dish-type-list' %}">All dish types</a></li>
+            <li><a class="dropdown-item" href="{% url 'kitchen:dish-list' %}">All dishes</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'kitchen:cook-list' %}">All cooks</a></li>
+          </ul>
+        </li>
+      </ul>
+       {% if user.is_authenticated %}
+          <li class="nav-link m-2">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
+          <li class="nav-link">
+            <form action="{% url 'logout' %}?next={{ request.path }}" method="post"
+              class="logout_navbar_form"
+            >
+              {% csrf_token %}
+              <input class="btn btn-danger" type="submit" value="Logout">
+            </form></li>
+        {% else %}
+          <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-primary">Login</a>
+        {% endif %}
+    </div>
+  </div>
+</nav>

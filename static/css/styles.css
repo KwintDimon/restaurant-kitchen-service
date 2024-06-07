@@ -1,0 +1,23 @@
+.nav-item:hover{
+    background: linear-gradient(to bottom, rgba(209, 107, 107, 0), #dadada, rgba(186, 131, 202, 0));
+}
+form{
+    width: 25vw;
+}
+.logout_navbar_form{
+    width: auto;
+}
+.card {
+    transition: 1s;
+}
+.card:hover{
+    scale: 1.1;
+}
+
+.list-group-item{
+    transition: 1s;
+}
+
+.list-group-item:hover{
+    scale: 1.1;
+}

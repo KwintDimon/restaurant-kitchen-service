@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Dish type list</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>All available dish types
+      <a href="{% url 'kitchen:dish-type-create' %}" 
+         class="link-primary link-underline-opacity-0">
+        +     
+      </a>
+    </h1>
+    {% if dish_types_list %}
+     <ol>
+      {% for dish_type in dish_types_list %}
+        <li>
+          {{ dish_type.name }} <strong>(id: {{ dish_type.id }}</strong>)
+          <a href="{% url 'kitchen:dish-type-update' pk=dish_type.id %}"
+           class="link-info link-underline-opacity-0">
+            Update
+          </a>
+          <a href="{% url 'kitchen:dish-type-delete' pk=dish_type.id %}"
+          class="link-danger link-underline-opacity-0">
+            Delete
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+    {% else %}
+      <h3>There are no dish types. Create them using "Create" button.</h3>
+    {% endif %}
+  </div>
+{% endblock %}
